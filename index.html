@@ -4,10 +4,9 @@
 
         <title>Sam Lavery</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
         <title>D3 Page Template</title>
         <script type="text/javascript" src="d3/d3.v3/d3.v3.js"></script>
-        <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="all">
         <style type="text/css">
 
         </style>
@@ -18,15 +17,6 @@
         <p id="add"> + year </p>
         <p id="remove"> - year </p>
           
-    <div class="container">
-      <div class="container-fluid">
-       <div class="row-fluid">
-
-        <div class="span4">
-            <p>this is span of 4</p>
-        </div>
-
-        <div class="span8">
 
         <script type="text/javascript">
 
@@ -35,13 +25,23 @@
             var h = 250;
 
             //Current Year
-            var dataYear = 2011;
+            var dataYear = 2008;
             
             //Datasets
 
-            var dataset2010 = [
+            var dataset2008 = [
                                 {key: 1, skill: "Photoshop", level: 4},
-                                {key: 2, skill: "Illustrator", level: 5},
+                                {key: 2, skill: "Illustrator", level: 2},
+                              ];
+
+            var dataset2009 = [
+                                {key: 1, skill: "Photoshop", level: 5},
+                                {key: 2, skill: "Illustrator", level: 3},
+                              ];
+
+            var dataset2010 = [
+                                {key: 1, skill: "Photoshop", level: 5},
+                                {key: 2, skill: "Illustrator", level: 4},
                               ];
 
             var dataset2011 = [
@@ -83,6 +83,21 @@
                 .attr("height",40)
                 .attr("fill", "teal");
 
+            svg.selectAll("text")
+                .data(eval("dataset"+dataYear))
+                .enter()
+                .append("text")
+                .text(function(d){
+                    return d.skill;
+                })
+                .attr("y", function(d, i) { return (i * 50)+20; })
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "14px")
+                .attr("fill", "white");
+
+
+
+
             //On click, update with new data
 
             d3.selectAll("p")
@@ -103,7 +118,7 @@
 
                 console.log(eval("dataset"+dataYear));
 
-            //Update data
+            //Update Bar Data
 
             var bars = svg.selectAll("rect")
                 .data(eval("dataset"+dataYear));
@@ -112,18 +127,18 @@
 
             bars.enter()
                 .append("rect")
-                .attr("y", function(d, i) { return i * 20; })
+                .attr("y", function(d, i) { return i * 50; })
                 .attr("width", function(d){ return d.level * w/20;})
-                .attr("height",15)
+                .attr("height",40)
                 .attr("fill", "teal");
 
             //Update
 
             bars.transition()
                 .duration(500)
-                .attr("y", function(d, i) { return i * 20; })
+                .attr("y", function(d, i) { return i * 50; })
                 .attr("width", function(d){ return d.level * w/20;})
-                .attr("height",15);
+                .attr("height",40)
 
             //Exit
 
@@ -131,16 +146,38 @@
                 .transition()
                 .duration(500)
                 .remove();
-            });
 
-            
+            //Update Text Data
+
+            var newText = svg.selectAll("text")
+                .data(eval("dataset"+dataYear)); 
+
+            newText.enter()
+                .append("text")
+                //.attr("x",w)
+                .text(function(d){
+                    return d.skill;
+                })
+                .attr("y", function(d, i) { return (i * 50)+20; })
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "14px")
+                .attr("fill", "white");
+
+            newText.transition()
+                .duration(500)
+                .attr("y", function(d, i) { return (i * 50)+20; })
+
+            newText.exit()
+                .transition()
+                .duration(500)
+                .remove();
+
+            console.log(newText);                
+            });
             
         </script>
 
-            </div>
-        </div>
-      </div>    
-    </div>
+
 
     </body>
 </html>
