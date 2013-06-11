@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <title>Sam Lavery</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>D3 Page Template</title>
+        <script type="text/javascript" src="d3/d3.v3/d3.v3.js"></script>
+        <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="all">
+        <style type="text/css">
+
+        </style>
+
+    </head>
+    <body>
+
+        <p id="add"> + year </p>
+        <p id="remove"> - year </p>
+          
+    <div class="container">
+      <div class="container-fluid">
+       <div class="row-fluid">
+
+        <div class="span4">
+            <p>this is span of 4</p>
+        </div>
+
+        <div class="span8">
+
+        <script type="text/javascript">
+
+            //Width and Height
+            var w = 500;
+            var h = 250;
+
+            //Current Year
+            var dataYear = 2011;
+            
+            //Datasets
+
+            var dataset2010 = [
+                                {key: 1, skill: "Photoshop", level: 4},
+                                {key: 2, skill: "Illustrator", level: 5},
+                              ];
+
+            var dataset2011 = [
+                                {key: 1, skill: "Photoshop", level: 6},
+                                {key: 2, skill: "Illustrator", level: 8},
+                                {key: 3, skill: "InDesign", level: 4}
+                              ];
+
+            var dataset2012 = [
+                                {key: 1, skill: "Photoshop", level: 7},
+                                {key: 2, skill: "Illustrator", level: 9},
+                                {key: 3, skill: "InDesign", level: 7}                                
+                              ];
+
+            var dataset2013 = [
+                                {key: 1, skill: "Photoshop", level: 8},
+                                {key: 2, skill: "Illustrator", level: 9},
+                                {key: 3, skill: "InDesign", level: 8}  
+                              ];
+
+            //Create SVG Element
+
+            var svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+
+            //Create Bars
+
+            svg.selectAll("rect")
+                .data(eval("dataset"+dataYear))
+                .enter()
+                .append("rect")
+                //.attr("x", function(d, i) {
+                //    return i * (w / dataLevel.length);
+                //})
+                .attr("y", function(d, i) { return i * 50; })
+                .attr("width", function(d){ return d.level * w/20;})
+                .attr("height",40)
+                .attr("fill", "teal");
+
+            //On click, update with new data
+
+            d3.selectAll("p")
+                .on("click", function(){
+
+                    //See which P was clicked
+
+                    var paragraphID = d3.select(this).attr("id");
+                    console.log(paragraphID);
+
+                    //Decide whether to add or subtract from current year
+
+                    if(paragraphID == "add"){
+                        dataYear++;
+                    }else if(paragraphID == "remove"){
+                        dataYear--;
+                    }
+
+                console.log(eval("dataset"+dataYear));
+
+            //Update data
+
+            var bars = svg.selectAll("rect")
+                .data(eval("dataset"+dataYear));
+
+            //Enter
+
+            bars.enter()
+                .append("rect")
+                .attr("y", function(d, i) { return i * 20; })
+                .attr("width", function(d){ return d.level * w/20;})
+                .attr("height",15)
+                .attr("fill", "teal");
+
+            //Update
+
+            bars.transition()
+                .duration(500)
+                .attr("y", function(d, i) { return i * 20; })
+                .attr("width", function(d){ return d.level * w/20;})
+                .attr("height",15);
+
+            //Exit
+
+            bars.exit()
+                .transition()
+                .duration(500)
+                .remove();
+            });
+
+            
+            
+        </script>
+
+            </div>
+        </div>
+      </div>    
+    </div>
+
+    </body>
+</html>

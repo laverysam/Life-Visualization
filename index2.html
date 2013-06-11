@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <title>Sam Lavery</title>
+
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+        <style type="text/css">
+
+        </style>
+
+    </head>
+    <body>
+
+<p>Click to change year</p>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v0.min.js"></script>
+
+
+
+
+<script>
+
+    var w = 1000;
+    var h = 500;
+    var barPadding = 10;
+
+    var dataYear = 2011;
+    var dataSkill = [];
+    var dataLevel = [];
+    //var dataFile = {};
+
+    var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+    d3.csv("data/Skills" + dataYear + ".csv", function(data){
+
+        //go through csv file to pick out data and place in variables
+        for(var i = 0; i<data.length; i++){
+
+            dataSkill[i] = data[i].skill;
+            dataLevel[i] = parseFloat(data[i].level);
+
+            //dataFile 
+
+        }
+            //print statements to check data
+            console.log(dataSkill);
+            console.log(dataLevel);
+
+
+    //draw initial
+    svg.selectAll("rect")
+        .data(dataLevel)
+        .enter()
+        .append("rect")
+        //.attr("x", function(d, i) {
+        //    return i * (w / dataLevel.length);
+        //})
+        .attr("y", function(d, i) { return i * 20; })
+        .attr("width", function(d){ return d * w/20;})
+        .attr("height",15);
+
+
+    
+    });
+
+        d3.select("p")
+            .on("click", function(){
+            dataYear++;
+
+            d3.csv("data/Skills" + dataYear + ".csv", function(data){
+
+        //go through csv file to pick out data and place in variables
+        for(var i = 0; i<data.length; i++){
+
+            dataSkill[i] = data[i].skill;
+            dataLevel[i] = parseFloat(data[i].level);
+            //dataFile 
+
+        }
+            //print statements to check data
+            console.log(dataYear);
+            console.log(dataSkill);
+            console.log(dataLevel);
+
+            svg.selectAll("rect")
+                .data(dataLevel)
+                .sort(function(a, b) {
+                    return d3.descending(a, b);
+                })
+                .transition()
+                .attr("y", function(d, i) { return i * 20; })
+                .attr("width", function(d){ return d * w/20;})
+                .attr("height",15);
+
+        });
+});
+
+
+
+
+
+</script>
+
+    </body>
+</html>

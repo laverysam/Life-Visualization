@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+        <script type="text/javascript" src="d3/d3.v3/d3.v3.js"></script>
+        <style type="text/css">
+
+        </style>
+
+    </head>
+    <body>
+            
+        <script type="text/javascript">
+
+            //Width and height
+            var w = 600;
+            var h = 250;
+            
+            var dataset = [
+                                {year: 2010, skill: "Photoshop", level: 4},
+                                {year: 2010, skill: "Illustrator", level: 5},
+                                {year: 2010, skill: "InDesign", level: 4},
+
+                                {year: 2011, skill: "Photoshop", level: 6},
+                                {year: 2011, skill: "Illustrator", level: 8},
+
+                                {year: 2012, skill: "Photoshop", level: 7},
+                                {year: 2012, skill: "Illustrator", level: 9},
+
+                                {year: 2013, skill: "Photoshop", level: 8},
+                                {year: 2013, skill: "Illustrator", level: 9}
+                              ];
+
+            //dataset.year.sort(function{
+            //    return d3.ascending(a,b);
+            //});
+
+            var nest = d3.nest()
+                .key(function(d) { return d.year})
+                //.key(function(d) { return d.skill})
+                .entries(dataset);
+
+            console.log(nest[0]);
+
+            
+            
+        </script>
+    </body>
+</html>
