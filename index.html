@@ -15,51 +15,176 @@
     <body>
 
         <p id="add"> + year </p>
+        <h2 id="currentYear">2000</h2>
         <p id="remove"> - year </p>
           
 
         <script type="text/javascript">
 
             //Width and Height
-            var w = 500;
-            var h = 250;
+            var w = 1200;
+            var h = 5000;
+
+            var divider = 12
 
             //Current Year
             var dataYear = 2008;
+
+            d3.select("#currentYear")
+                .text(dataYear);
             
             //Datasets
 
             var dataset2008 = [
-                                {key: 1, skill: "Photoshop", level: 4},
-                                {key: 2, skill: "Illustrator", level: 2},
+                                {key: 1, kind: "Design", skill: "Photoshop", level: 3},
+                                {key: 2, kind: "Design", skill: "Illustrator", level: 2},
+                                {key: 3, kind: "Design", skill: "InDesign", level: 2},  
+                                {key: 4, kind: "Design", skill: "After Effects", level: 0},
+                                {key: 5, kind: "Design", skill: "Edge", level: 0},
+                                {key: 6, kind: "Modeling", skill: "AutoCAD", level: 7},
+                                {key: 7, kind: "Modeling", skill: "Rhino", level: 0},
+                                {key: 8, kind: "Modeling", skill: "3ds Max", level: 0},
+                                {key: 9, kind: "Modeling", skill: "Revit", level: 0},
+                                {key: 10, kind: "Modeling", skill: "ArcMap GIS", level: 0},
+                                {key: 11, kind: "Prototyping", skill: "Sketching", level: 4},
+                                {key: 12, kind: "Prototyping", skill: "OmniGraffle", level: 0},
+                                {key: 13, kind: "Prototyping", skill: "Axure", level: 0},
+                                {key: 14, kind: "Prototyping", skill: "Balsamiq", level: 0},
+                                {key: 15, kind: "Prototyping", skill: "Drafting", level: 0},
+                                {key: 16, kind: "Prototyping", skill: "Digital Fabrication", level: 0},
+                                {key: 17, kind: "Language", skill: "Processing", level: 0},
+                                {key: 18, kind: "Language", skill: "openFrameworks", level: 0},
+                                {key: 19, kind: "Language", skill: "JavaScript", level: 0},
+                                {key: 20, kind: "Language", skill: "HTML", level: 0},
+                                {key: 21, kind: "Language", skill: "CSS", level: 0},
+                                {key: 22, kind: "Language", skill: "Portuguese", level: 0}
                               ];
 
             var dataset2009 = [
-                                {key: 1, skill: "Photoshop", level: 5},
-                                {key: 2, skill: "Illustrator", level: 3},
+                                {key: 1, kind: "Design", skill: "Photoshop", level: 4},
+                                {key: 2, kind: "Design", skill: "Illustrator", level: 5},
+                                {key: 3, kind: "Design", skill: "InDesign", level: 4},  
+                                {key: 4, kind: "Design", skill: "After Effects", level: 0},
+                                {key: 5, kind: "Design", skill: "Edge", level: 0},
+                                {key: 6, kind: "Modeling", skill: "AutoCAD", level: 7},
+                                {key: 7, kind: "Modeling", skill: "Rhino", level: 5},
+                                {key: 8, kind: "Modeling", skill: "3ds Max", level: 0},
+                                {key: 9, kind: "Modeling", skill: "Revit", level: 0},
+                                {key: 10, kind: "Modeling", skill: "ArcMap GIS", level: 4},
+                                {key: 11, kind: "Prototyping", skill: "Sketching", level: 5},
+                                {key: 12, kind: "Prototyping", skill: "OmniGraffle", level: 0},
+                                {key: 13, kind: "Prototyping", skill: "Axure", level: 0},
+                                {key: 14, kind: "Prototyping", skill: "Balsamiq", level: 0},
+                                {key: 15, kind: "Prototyping", skill: "Drafting", level: 0},
+                                {key: 16, kind: "Prototyping", skill: "Digital Fabrication", level: 0},
+                                {key: 17, kind: "Language", skill: "Processing", level: 4},
+                                {key: 18, kind: "Language", skill: "openFrameworks", level: 0},
+                                {key: 19, kind: "Language", skill: "JavaScript", level: 0},
+                                {key: 20, kind: "Language", skill: "HTML", level: 0},
+                                {key: 21, kind: "Language", skill: "CSS", level: 0},
+                                {key: 22, kind: "Language", skill: "Portuguese", level: 0}
                               ];
 
             var dataset2010 = [
-                                {key: 1, skill: "Photoshop", level: 5},
-                                {key: 2, skill: "Illustrator", level: 4},
+                                {key: 1, kind: "Design", skill: "Photoshop", level: 5},
+                                {key: 2, kind: "Design", skill: "Illustrator", level: 6},
+                                {key: 3, kind: "Design", skill: "InDesign", level: 5},  
+                                {key: 4, kind: "Design", skill: "After Effects", level: 0},
+                                {key: 5, kind: "Design", skill: "Edge", level: 0},
+                                {key: 6, kind: "Modeling", skill: "AutoCAD", level: 7},
+                                {key: 7, kind: "Modeling", skill: "Rhino", level: 7},
+                                {key: 8, kind: "Modeling", skill: "3ds Max", level: 0},
+                                {key: 9, kind: "Modeling", skill: "Revit", level: 0},
+                                {key: 10, kind: "Modeling", skill: "ArcMap GIS", level: 4},
+                                {key: 11, kind: "Prototyping", skill: "Sketching", level: 6},
+                                {key: 12, kind: "Prototyping", skill: "OmniGraffle", level: 0},
+                                {key: 13, kind: "Prototyping", skill: "Axure", level: 0},
+                                {key: 14, kind: "Prototyping", skill: "Balsamiq", level: 0},
+                                {key: 15, kind: "Prototyping", skill: "Drafting", level: 6},
+                                {key: 16, kind: "Prototyping", skill: "Digital Fabrication", level: 5},
+                                {key: 17, kind: "Language", skill: "Processing", level: 4},
+                                {key: 18, kind: "Language", skill: "openFrameworks", level: 0},
+                                {key: 19, kind: "Language", skill: "JavaScript", level: 0},
+                                {key: 20, kind: "Language", skill: "HTML", level: 0},
+                                {key: 21, kind: "Language", skill: "CSS", level: 0},
+                                {key: 22, kind: "Language", skill: "Portuguese", level: 0}
                               ];
 
             var dataset2011 = [
-                                {key: 1, skill: "Photoshop", level: 6},
-                                {key: 2, skill: "Illustrator", level: 8},
-                                {key: 3, skill: "InDesign", level: 4}
+                                {key: 1, kind: "Design", skill: "Photoshop", level: 6},
+                                {key: 2, kind: "Design", skill: "Illustrator", level: 8},
+                                {key: 3, kind: "Design", skill: "InDesign", level: 6},  
+                                {key: 4, kind: "Design", skill: "After Effects", level: 0},
+                                {key: 5, kind: "Design", skill: "Edge", level: 0},
+                                {key: 6, kind: "Modeling", skill: "AutoCAD", level: 9},
+                                {key: 7, kind: "Modeling", skill: "Rhino", level: 8},
+                                {key: 8, kind: "Modeling", skill: "3ds Max", level: 6},
+                                {key: 9, kind: "Modeling", skill: "Revit", level: 6},
+                                {key: 10, kind: "Modeling", skill: "ArcMap GIS", level: 8},
+                                {key: 11, kind: "Prototyping", skill: "Sketching", level: 7},
+                                {key: 12, kind: "Prototyping", skill: "OmniGraffle", level: 0},
+                                {key: 13, kind: "Prototyping", skill: "Axure", level: 0},
+                                {key: 14, kind: "Prototyping", skill: "Balsamiq", level: 0},
+                                {key: 15, kind: "Prototyping", skill: "Drafting", level: 7},
+                                {key: 16, kind: "Prototyping", skill: "Digital Fabrication", level: 5},
+                                {key: 17, kind: "Language", skill: "Processing", level: 4},
+                                {key: 18, kind: "Language", skill: "openFrameworks", level: 0},
+                                {key: 19, kind: "Language", skill: "JavaScript", level: 0},
+                                {key: 20, kind: "Language", skill: "HTML", level: 2},
+                                {key: 21, kind: "Language", skill: "CSS", level: 2},
+                                {key: 22, kind: "Language", skill: "Portuguese", level: 0}
+
                               ];
 
             var dataset2012 = [
-                                {key: 1, skill: "Photoshop", level: 7},
-                                {key: 2, skill: "Illustrator", level: 9},
-                                {key: 3, skill: "InDesign", level: 7}                                
+                                {key: 1, kind: "Design", skill: "Photoshop", level: 7},
+                                {key: 2, kind: "Design", skill: "Illustrator", level: 9},
+                                {key: 3, kind: "Design", skill: "InDesign", level: 7},  
+                                {key: 4, kind: "Design", skill: "After Effects", level: 5},
+                                {key: 5, kind: "Design", skill: "Edge", level: 3},
+                                {key: 6, kind: "Modeling", skill: "AutoCAD", level: 9},
+                                {key: 7, kind: "Modeling", skill: "Rhino", level: 8},
+                                {key: 8, kind: "Modeling", skill: "3ds Max", level: 6},
+                                {key: 9, kind: "Modeling", skill: "Revit", level: 6},
+                                {key: 10, kind: "Modeling", skill: "ArcMap GIS", level: 9},
+                                {key: 11, kind: "Prototyping", skill: "Sketching", level: 7},
+                                {key: 12, kind: "Prototyping", skill: "OmniGraffle", level: 4},
+                                {key: 13, kind: "Prototyping", skill: "Axure", level: 0},
+                                {key: 14, kind: "Prototyping", skill: "Balsamiq", level: 6},
+                                {key: 15, kind: "Prototyping", skill: "Drafting", level: 8},
+                                {key: 16, kind: "Prototyping", skill: "Digital Fabrication", level: 7},
+                                {key: 17, kind: "Language", skill: "Processing", level: 6},
+                                {key: 18, kind: "Language", skill: "openFrameworks", level: 4},
+                                {key: 19, kind: "Language", skill: "JavaScript", level: 3},
+                                {key: 20, kind: "Language", skill: "HTML", level: 4},
+                                {key: 21, kind: "Language", skill: "CSS", level: 4},
+                                {key: 22, kind: "Language", skill: "Portuguese", level: 4}
                               ];
 
             var dataset2013 = [
-                                {key: 1, skill: "Photoshop", level: 8},
-                                {key: 2, skill: "Illustrator", level: 9},
-                                {key: 3, skill: "InDesign", level: 8}  
+                                {key: 1, kind: "Design", skill: "Photoshop", level: 8},
+                                {key: 2, kind: "Design", skill: "Illustrator", level: 10},
+                                {key: 3, kind: "Design", skill: "InDesign", level: 9},  
+                                {key: 4, kind: "Design", skill: "After Effects", level: 8},
+                                {key: 5, kind: "Design", skill: "Edge", level: 6},
+                                {key: 6, kind: "Modeling", skill: "AutoCAD", level: 10},
+                                {key: 7, kind: "Modeling", skill: "Rhino", level: 9},
+                                {key: 8, kind: "Modeling", skill: "3ds Max", level: 6},
+                                {key: 9, kind: "Modeling", skill: "Revit", level: 6},
+                                {key: 10, kind: "Modeling", skill: "ArcMap GIS", level: 9},
+                                {key: 11, kind: "Prototyping", skill: "Sketching", level: 9},
+                                {key: 12, kind: "Prototyping", skill: "OmniGraffle", level: 9},
+                                {key: 13, kind: "Prototyping", skill: "Axure", level: 9},
+                                {key: 14, kind: "Prototyping", skill: "Balsamiq", level: 8},
+                                {key: 15, kind: "Prototyping", skill: "Drafting", level: 8},
+                                {key: 16, kind: "Prototyping", skill: "Digital Fabrication", level: 7},
+                                {key: 17, kind: "Language", skill: "Processing", level: 6},
+                                {key: 18, kind: "Language", skill: "openFrameworks", level: 4},
+                                {key: 19, kind: "Language", skill: "JavaScript", level: 7},
+                                {key: 20, kind: "Language", skill: "HTML", level: 8},
+                                {key: 21, kind: "Language", skill: "CSS", level: 8},
+                                {key: 22, kind: "Language", skill: "Portuguese", level: 8}
+
                               ];
 
             //Create SVG Element
@@ -73,15 +198,50 @@
 
             svg.selectAll("rect")
                 .data(eval("dataset"+dataYear))
+                .sort(function(a,b){
+                    return d3.ascending(a,b);
+                })
                 .enter()
                 .append("rect")
-                //.attr("x", function(d, i) {
-                //    return i * (w / dataLevel.length);
-                //})
-                .attr("y", function(d, i) { return i * 50; })
-                .attr("width", function(d){ return d.level * w/20;})
+                .attr("x",function(d){
+                    if(d.kind=="Modeling"){
+                        return 3 * w/divider;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return 6 * w/divider;
+                    }
+                    if(d.kind=="Language"){
+                        return 9 * w/divider;
+                    }
+                })
+                .attr("y", function(d, i){
+                    if(d.kind=="Design"){
+                        return i * 50; 
+                    }
+                    if(d.kind=="Modeling"){
+                        return (i - 5) * 50;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return (i - 10) * 50;
+                    }
+                    if(d.kind=="Language"){
+                        return (i - 16) * 50;
+                    }
+                })
+                //.attr("y", function(d, i) { return i * 50; })
+                .attr("width", function(d){ return d.level * w/100;})
                 .attr("height",40)
-                .attr("fill", "teal");
+                .attr("fill", function(d){
+                    if(d.kind=="Design"){
+                        return "teal";
+                    }if(d.kind=="Modeling"){
+                        return "red";
+                    }if(d.kind=="Prototyping"){
+                        return "orange";
+                    }if(d.kind=="Language"){
+                        return "blue";
+                    }
+                });
 
             svg.selectAll("text")
                 .data(eval("dataset"+dataYear))
@@ -90,13 +250,34 @@
                 .text(function(d){
                     return d.skill;
                 })
-                .attr("y", function(d, i) { return (i * 50)+20; })
+                .attr("x",function(d){
+                    if(d.kind=="Modeling"){
+                        return 3 * w/divider;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return 6 * w/divider;
+                    }
+                    if(d.kind=="Language"){
+                        return 9 * w/divider;
+                    }
+                })
+                .attr("y", function(d, i){
+                    if(d.kind=="Design"){
+                        return i * 50 + 20; 
+                    }
+                    if(d.kind=="Modeling"){
+                        return (i - 5) * 50 + 20;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return (i - 10) * 50 + 20;
+                    }
+                    if(d.kind=="Language"){
+                        return (i - 16) * 50 + 20;
+                    }
+                })
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "14px")
                 .attr("fill", "white");
-
-
-
 
             //On click, update with new data
 
@@ -116,6 +297,9 @@
                         dataYear--;
                     }
 
+            d3.select("#currentYear")
+                .text(dataYear);
+
                 console.log(eval("dataset"+dataYear));
 
             //Update Bar Data
@@ -127,17 +311,74 @@
 
             bars.enter()
                 .append("rect")
-                .attr("y", function(d, i) { return i * 50; })
-                .attr("width", function(d){ return d.level * w/20;})
+                .attr("x",function(d){
+                    if(d.kind=="Modeling"){
+                        return 3 * w/divider;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return 6 * w/divider;
+                    }
+                    if(d.kind=="Language"){
+                        return 9 * w/divider;
+                    }
+                })
+                .attr("y", function(d, i){
+                    if(d.kind=="Design"){
+                        return i * 50; 
+                    }
+                    if(d.kind=="Modeling"){
+                        return (i - 5) * 50;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return (i - 10) * 50;
+                    }
+                    if(d.kind=="Language"){
+                        return (i - 16) * 50;
+                    }
+                })
+                .attr("width", function(d){ return d.level * w/100;})
                 .attr("height",40)
-                .attr("fill", "teal");
-
+                .attr("fill", function(d){
+                    if(d.kind=="Design"){
+                        return "teal";
+                    }if(d.kind=="Modeling"){
+                        return "red";
+                    }if(d.kind=="Prototyping"){
+                        return "orange";
+                    }if(d.kind=="Language"){
+                        return "blue";
+                    }
+                });
             //Update
 
             bars.transition()
                 .duration(500)
-                .attr("y", function(d, i) { return i * 50; })
-                .attr("width", function(d){ return d.level * w/20;})
+                .attr("x",function(d){
+                    if(d.kind=="Modeling"){
+                        return 3 * w/divider;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return 6 * w/divider;
+                    }
+                    if(d.kind=="Language"){
+                        return 9 * w/divider;
+                    }
+                })
+                .attr("y", function(d, i){
+                    if(d.kind=="Design"){
+                        return i * 50; 
+                    }
+                    if(d.kind=="Modeling"){
+                        return (i - 5) * 50;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return (i - 10) * 50;
+                    }
+                    if(d.kind=="Language"){
+                        return (i - 16) * 50;
+                    }
+                })
+                .attr("width", function(d){ return d.level * w/50;})
                 .attr("height",40)
 
             //Exit
@@ -165,19 +406,42 @@
 
             newText.transition()
                 .duration(500)
-                .attr("y", function(d, i) { return (i * 50)+20; })
+                .attr("x",function(d){
+                    if(d.kind=="Modeling"){
+                        return 3 * w/divider;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return 6 * w/divider;
+                    }
+                    if(d.kind=="Language"){
+                        return 9 * w/divider;
+                    }
+                })
+                .attr("y", function(d, i){
+                    if(d.kind=="Design"){
+                        return i * 50 + 20; 
+                    }
+                    if(d.kind=="Modeling"){
+                        return (i - 5) * 50 + 20;
+                    }
+                    if(d.kind=="Prototyping"){
+                        return (i - 10) * 50 + 20;
+                    }
+                    if(d.kind=="Language"){
+                        return (i - 16) * 50 + 20;
+                    }
+                })
 
             newText.exit()
                 .transition()
                 .duration(500)
                 .remove();
 
+
             console.log(newText);                
             });
             
         </script>
-
-
 
     </body>
 </html>
